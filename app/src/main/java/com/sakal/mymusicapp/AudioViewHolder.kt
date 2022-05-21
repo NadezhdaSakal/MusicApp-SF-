@@ -17,4 +17,4 @@ private var title=itemView.title
         singer.text=audio.singer
         title.text=audio.title
         }
-        }
+}

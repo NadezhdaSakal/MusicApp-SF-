@@ -14,8 +14,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27901234567901234" />
         <entry key="app/src/main/res/layout/audio_item.xml" value="0.22317596566523606" />
         <entry key="app/src/main/res/layout/fragment_audio.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.2115036231884058" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2115036231884058" />
         <entry key="app/src/main/res/menu/app_bar.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_player_control.xml" value="0.2520833333333333" />
