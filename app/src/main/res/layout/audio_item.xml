@@ -30,7 +30,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ava"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Singer - " />
+            tools:text="Singer" />
 
         <TextView
             android:id="@+id/title"
