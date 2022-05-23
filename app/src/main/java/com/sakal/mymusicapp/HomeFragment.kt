@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
+import androidx.appcompat.widget.SearchView
+import java.util.*
+
+
 
 class HomeFragment : Fragment() {
 
@@ -31,20 +35,47 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        main_recycler.apply {
-            audioAdapter = AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener{
+        search_view.setOnClickListener {
+            search_view.isIconified = false
+        }
 
-                override fun click(audio: Audio) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(audio)
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isEmpty()) {
+                    audioAdapter.addItems(audioDB)
+                    return true
                 }
-            })
+                val result = audioDB.filter {
+
+                    it.title.lowercase(Locale.getDefault()).contains(newText.lowercase(Locale.getDefault()))
+                }
+                audioAdapter.addItems(result)
+                return true
+            }
+        })
+
+        initRecyckler()
+        audioAdapter.addItems(audioDB)
+    }
+
+    private fun initRecyckler() {
+        main_recycler.apply {
+            audioAdapter =
+                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
+                    override fun click(audio: Audio) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(audio)
+                    }
+                })
 
             adapter = audioAdapter
             layoutManager = LinearLayoutManager(requireContext())
+
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
-        audioAdapter.addItems(audioDB)
     }
 
 }
