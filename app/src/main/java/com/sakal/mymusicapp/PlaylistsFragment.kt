@@ -1,6 +1,6 @@
 package com.sakal.mymusicapp
 
-/*
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +26,6 @@ class PlaylistsFragment : Fragment() {
     }
 }
 
- */
+
 
 
