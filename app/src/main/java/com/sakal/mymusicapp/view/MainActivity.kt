@@ -1,8 +1,12 @@
-package com.sakal.mymusicapp
+package com.sakal.mymusicapp.view
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.sakal.mymusicapp.R
+import com.sakal.mymusicapp.domain.Audio
+import com.sakal.mymusicapp.view.fragments.DetailsFragment
+import com.sakal.mymusicapp.view.fragments.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
