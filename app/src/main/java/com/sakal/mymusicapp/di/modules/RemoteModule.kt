@@ -1,8 +1,7 @@
 package com.sakal.mymusicapp.di.modules
-
 import com.sakal.mymusicapp.BuildConfig
 import com.sakal.mymusicapp.data.ApiConstants
-import com.sakal.mymusicapp.data.TmdbApi
+import com.sakal.mymusicapp.data.JamendoAPI
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,10 +16,8 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        //Настраиваем таймауты для медленного интернета
         .callTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
-        //Добавляем логгер
         .addInterceptor(HttpLoggingInterceptor().apply {
             if (BuildConfig.DEBUG) {
                 level = HttpLoggingInterceptor.Level.BASIC
@@ -38,5 +35,5 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideTmdbApi(retrofit: Retrofit): TmdbApi = retrofit.create(TmdbApi::class.java)
+    fun provideJamendoAPI(retrofit: Retrofit): JamendoAPI = retrofit.create(JamendoAPI::class.java)
 }

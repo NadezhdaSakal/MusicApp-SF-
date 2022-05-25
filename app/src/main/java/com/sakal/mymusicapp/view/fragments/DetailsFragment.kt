@@ -9,6 +9,8 @@ import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.domain.Audio
 import android.content.Intent
 import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
+import com.sakal.mymusicapp.data.ApiConstants
+import com.bumptech.glide.Glide
 
 
     class DetailsFragment : Fragment() {
@@ -53,7 +55,11 @@ import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
             audio = arguments?.get("audio") as Audio
 
             binding.detailsToolbar.title = audio.title
-            binding.detailsAva.setImageResource(audio.ava)
+            Glide.with(this)
+                .load(ApiConstants.IMAGES_URL + "w100" +audio.ava)
+                .centerCrop()
+                .into(binding.detailsAva)
+
             binding.detailsSinger.text = audio.singer
 
             binding.detailsFabFavorites.setImageResource(

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Audio(
-        var ava: Int,
+        var ava: String,
         var singer: String,
         var title: String,
         var isInFavorites: Boolean = false
