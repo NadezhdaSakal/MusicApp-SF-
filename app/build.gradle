@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-//apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdk 31
@@ -11,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.filmsearch"
+        applicationId "com.sakal.mumusicapp"
         minSdk 21
         targetSdk 31
         versionCode 1

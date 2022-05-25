@@ -1,19 +1,16 @@
 package com.sakal.mymusicapp
 
 import android.app.Application
-import com.sakal.mymusicapp.data.MainRepository
-import com.sakal.mymusicapp.domain.Interactor
-
+import com.sakal.mymusicapp.di.AppComponent
+import com.sakal.mymusicapp.di.DaggerAppComponent
 
 class App : Application() {
-    lateinit var repo: MainRepository
-    lateinit var interactor: Interactor
+    lateinit var dagger: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        repo = MainRepository()
-        interactor = Interactor(repo)
+        dagger = DaggerAppComponent.create()
     }
 
     companion object {
