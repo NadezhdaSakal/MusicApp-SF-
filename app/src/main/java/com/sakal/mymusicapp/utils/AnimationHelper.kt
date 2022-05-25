@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp
+package com.sakal.mymusicapp.utils
 
 import android.app.Activity
 import android.view.View
