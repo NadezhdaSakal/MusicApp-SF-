@@ -4,18 +4,20 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.sakal.mymusicapp.domain.Audio
 import kotlinx.android.synthetic.main.audio_item.view.*
-
+import com.sakal.mymusicapp.data.ApiConstants
+import com.bumptech.glide.Glide
 
 
 class AudioViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView){
-private var ava=itemView.ava
-private var singer=itemView.singer
-private var title=itemView.title
-
-
-        fun bind(audio: Audio){
-        ava.setImageResource(audio.ava)
-        singer.text=audio.singer
-        title.text=audio.title
+private val ava=itemView.ava
+private val singer=itemView.singer
+private val title=itemView.title
+        fun bind(audio: Audio) {
+                title.text = audio.title
+                Glide.with(itemView)
+                        .load(ApiConstants.IMAGES_URL + "w342" + audio.ava)
+                        .centerCrop()
+                        .into(ava)
+                title.text=audio.title
         }
 }

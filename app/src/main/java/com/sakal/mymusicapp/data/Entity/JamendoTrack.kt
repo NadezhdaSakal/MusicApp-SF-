@@ -9,7 +9,7 @@ data class JamendoTrack(
     val backdropPath: String,
     @SerializedName("overview")
     val overview: String,
-    @SerializedName("ava_path")
+    @SerializedName("ava")
     val avaPath: String,
     @SerializedName("release_date")
     val releaseDate: String,
