@@ -54,13 +54,13 @@ import com.bumptech.glide.Glide
         private fun setAudioDetails() {
             audio = arguments?.get("audio") as Audio
 
-            binding.detailsToolbar.title = audio.title
             Glide.with(this)
-                .load(ApiConstants.IMAGES_URL + "w100" +audio.ava)
+                .load(ApiConstants.IMAGES_URL + "w500" +audio.ava)
                 .centerCrop()
                 .into(binding.detailsAva)
 
-            binding.detailsSinger.text = audio.singer
+            binding.detailsTitle.text = audio.title
+
 
             binding.detailsFabFavorites.setImageResource(
                 if (audio.isInFavorites) R.drawable.ic_baseline_favorite
