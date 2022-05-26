@@ -40,13 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigation() {
         topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.search -> {
-                    Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
-            }
+
             when (it.itemId) {
                 R.id.favorites -> {
                     Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
