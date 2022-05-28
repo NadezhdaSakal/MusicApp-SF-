@@ -1,7 +1,7 @@
 package com.sakal.mymusicapp.di.modules
 import com.sakal.mymusicapp.BuildConfig
 import com.sakal.mymusicapp.data.ApiConstants
-import com.sakal.mymusicapp.data.JamendoAPI
+import com.sakal.mymusicapp.data.PhishAPI
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -35,5 +35,5 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideJamendoAPI(retrofit: Retrofit): JamendoAPI = retrofit.create(JamendoAPI::class.java)
+    fun providePhishAPI(retrofit: Retrofit): PhishAPI = retrofit.create(PhishAPI::class.java)
 }
