@@ -3,14 +3,15 @@ package com.sakal.mymusicapp.data.Entity
 import com.google.gson.annotations.SerializedName
 
 data class PhishResultsDto(
-    @SerializedName("page")
+    val success: Boolean,
+
     val page: Int,
-    @SerializedName("results")
+    @SerializedName("data")
     val phishTracks: List<PhishTrack>,
     @SerializedName("total_pages")
     val totalPages: Int,
-    @SerializedName("total_results")
-    val totalResults: Int
+    @SerializedName("total_entries")
+    val totalEntries: Int
 )
 
 

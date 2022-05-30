@@ -8,10 +8,11 @@ object Converter {
         val result = mutableListOf<Audio>()
         list?.forEach {
             result.add(Audio(
+                id = it.id,
                 title = it.title,
-                ava = it.ava,
-                singer = it.artist,
-                isInFavorites = false
+                ava = "",
+                singer = "",
+                isInFavorites = false,
             )
             )
         }
