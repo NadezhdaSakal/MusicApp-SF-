@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sakal.mymusicapp.domain.Audio
-import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.view.rv_adapters.TopSpacingItemDecoration
 import com.sakal.mymusicapp.databinding.FragmentHomeBinding
+import com.sakal.mymusicapp.domain.Audio
 import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
@@ -74,7 +73,7 @@ class HomeFragment : Fragment() {
                     return true
                 }
                 val result = audioDB.filter {
-                    it.title.lowercase(Locale.getDefault())
+                    it.name.lowercase(Locale.getDefault())
                         .contains(newText.lowercase(Locale.getDefault()))
                 }
                 audioAdapter.addItems(result)

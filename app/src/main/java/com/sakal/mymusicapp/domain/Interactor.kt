@@ -1,26 +1,27 @@
 package com.sakal.mymusicapp.domain
 
 import com.sakal.mymusicapp.data.*
-import com.sakal.mymusicapp.data.Entity.PhishResultsDto
+import com.sakal.mymusicapp.data.Entity.dto.Results
 import com.sakal.mymusicapp.utils.Converter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.util.Log
 
-class Interactor (private val repo: MainRepository, private val retrofitService: PhishAPI) {
+
+
+class Interactor(private val repo: MainRepository, private val retrofitService: LastFMApi) {
 
     fun getTracksFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
-        retrofitService.getTracks().enqueue(object : Callback<PhishResultsDto> {
-            override fun onResponse(call: Call<PhishResultsDto>, response: Response<PhishResultsDto>) {
-                callback.onSuccess(Converter.convertApiListToDTOList(response.body()?.phishTracks))
+        retrofitService.getTracksArtist(api_Key = , artist = ).enqueue(object : Callback<Results> {
+            override fun onResponse(call: Call<Results>, response: Response<Results>) {
+                callback.onSuccess(Converter.convertApiListToDTOList(response.body()?.LastFMTracks))
             }
 
-            override fun onFailure(call: Call<PhishResultsDto>, t: Throwable) {
-                Log.e("retrofit", t.toString())
+            override fun onFailure(call: Call<Results>, t: Throwable) {
                 callback.onFailure()
             }
         })
     }
 }
+

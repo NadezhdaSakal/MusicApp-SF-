@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sakal.mymusicapp.R
-import com.sakal.mymusicapp.domain.Audio
 import android.content.Intent
 import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
 import com.sakal.mymusicapp.data.ApiConstants
 import com.bumptech.glide.Glide
+import com.sakal.mymusicapp.domain.Audio
 
 
-    class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment() {
         private lateinit var audio: Audio
         private lateinit var binding: FragmentDetailsBinding
 
@@ -44,7 +44,7 @@ import com.bumptech.glide.Glide
                 intent.action = Intent.ACTION_SEND
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
-                    "Check out this audio: ${audio.title} \n\n ${audio.singer}"
+                    "Check out this audio: ${audio.name} \n\n ${audio.artist}"
                 )
                 intent.type = "text/plain"
                 startActivity(Intent.createChooser(intent, "Share To:"))
@@ -55,11 +55,11 @@ import com.bumptech.glide.Glide
             audio = arguments?.get("audio") as Audio
 
             Glide.with(this)
-                .load(ApiConstants.IMAGES_URL + "w500" +audio.ava)
+                .load(ApiConstants.BASE_URL + "w500" +audio.image)
                 .centerCrop()
                 .into(binding.detailsAva)
 
-            binding.detailsTitle.text = audio.title
+            binding.detailsTitle.text = audio.name
 
 
             binding.detailsFabFavorites.setImageResource(
