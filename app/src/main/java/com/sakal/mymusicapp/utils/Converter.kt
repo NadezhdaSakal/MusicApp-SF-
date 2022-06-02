@@ -11,7 +11,7 @@ object Converter {
             result.add(Audio(
                 artist=it.name,
                 name = it.name,
-                image = it.image,
+                image = it.image[1].text,
                 isInFavorites = false
             ))
         }

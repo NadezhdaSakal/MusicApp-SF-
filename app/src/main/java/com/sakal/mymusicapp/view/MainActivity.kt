@@ -45,11 +45,9 @@ class MainActivity : AppCompatActivity() {
     private fun initNavigation() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                androidx.appcompat.R.id.home -> {
+                R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-
-
                     changeFragment( fragment?: HomeFragment(), tag)
                     true
                 }
@@ -59,13 +57,13 @@ class MainActivity : AppCompatActivity() {
                     changeFragment( fragment?: FavoritesFragment(), tag)
                     true
                 }
-                R.id._latest -> {
+                R.id.watch_later -> {
                     val tag = "latest"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: LatestFragment(), tag)
+                    changeFragment( fragment?:LatestFragment(), tag)
                     true
                 }
-                R.id.playlist -> {
+                R.id.selections -> {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: PlaylistsFragment(), tag)

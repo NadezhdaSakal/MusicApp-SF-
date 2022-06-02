@@ -16,7 +16,6 @@ data class LastFMTrack(
     val listeners: String,
     @SerializedName("playcount")
     val playcount: String
-
     ) : Parcelable
 
 

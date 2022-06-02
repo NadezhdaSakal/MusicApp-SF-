@@ -8,9 +8,14 @@
         <entry key="app/src/main/res/drawable/background_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_latest.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_mane.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/background_playlists.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_search_view.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/background_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_art_track.xml" value="0.119" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_border.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_baseline_playlist_play_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/ic_baseline_shuffle.xml" value="0.1" />
@@ -18,7 +23,7 @@
         <entry key="app/src/main/res/drawable/ic_round_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.1933876811594203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/audio_item.xml" value="0.22317596566523606" />
+        <entry key="app/src/main/res/layout/audio_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_audio.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.34458259325044405" />

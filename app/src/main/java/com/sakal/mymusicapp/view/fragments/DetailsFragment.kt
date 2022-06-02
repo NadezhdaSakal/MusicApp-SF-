@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.sakal.mymusicapp.R
 import android.content.Intent
 import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
-import com.sakal.mymusicapp.data.ApiConstants
 import com.bumptech.glide.Glide
 import com.sakal.mymusicapp.domain.Audio
 
@@ -55,7 +54,7 @@ class DetailsFragment : Fragment() {
             audio = arguments?.get("audio") as Audio
 
             Glide.with(this)
-                .load(ApiConstants.BASE_URL + "w500" +audio.image)
+                .load(audio.image)
                 .centerCrop()
                 .into(binding.detailsAva)
 
