@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/latest_fragment_root"
-    android:background="@drawable/background_latest"
+    android:id="@+id/playlists"
     android:visibility="invisible"
     tools:visibility="visible"
-    tools:context=".view.fragments.LatestFragment">
+    tools:context=".view.fragments.TopTracksFragment">
 
 </FrameLayout>

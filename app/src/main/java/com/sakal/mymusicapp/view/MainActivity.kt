@@ -22,17 +22,17 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
+            .add(R.id.fragment_placeholder, ArtistsFragment())
             .addToBackStack(null)
             .commit()
 
     }
 
-    fun launchDetailsFragment(audio: Audio) {
+    fun launchPlaylistsFragment(audio: Audio) {
         val bundle = Bundle()
 
         bundle.putParcelable("audio", audio)
-        val fragment = DetailsFragment()
+        val fragment = TopTracksFragment()
         fragment.arguments = bundle
 
         supportFragmentManager
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: HomeFragment(), tag)
+                    changeFragment( fragment?: ArtistsFragment(), tag)
                     true
                 }
                 R.id.favorites -> {
@@ -57,16 +57,10 @@ class MainActivity : AppCompatActivity() {
                     changeFragment( fragment?: FavoritesFragment(), tag)
                     true
                 }
-                R.id.watch_later -> {
-                    val tag = "latest"
+                R.id.playlist -> {
+                    val tag = "playlist"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?:LatestFragment(), tag)
-                    true
-                }
-                R.id.selections -> {
-                    val tag = "selections"
-                    val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: PlaylistsFragment(), tag)
+                    changeFragment( fragment?: TopTracksFragment(), tag)
                     true
                 }
                 else -> false

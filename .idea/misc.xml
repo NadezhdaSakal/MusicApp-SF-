@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.1933876811594203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/audio_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_artists.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_audio.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.34458259325044405" />
@@ -31,9 +32,12 @@
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2115036231884058" />
         <entry key="app/src/main/res/layout/fragment_latest.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_playlist.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_playlists.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_toptracks.xml" value="0.1" />
         <entry key="app/src/main/res/menu/app_bar.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_player_control.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.3814453125" />
         <entry key="app/src/main/res/menu/player_control.xml" value="0.24820512820512822" />
       </map>
     </option>

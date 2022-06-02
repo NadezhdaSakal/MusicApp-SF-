@@ -10,22 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sakal.mymusicapp.view.rv_adapters.TopSpacingItemDecoration
-import com.sakal.mymusicapp.databinding.FragmentHomeBinding
+import com.sakal.mymusicapp.databinding.FragmentArtistsBinding
 import com.sakal.mymusicapp.domain.Audio
 import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_artists.*
 import java.util.*
 
 
-class HomeFragment : Fragment() {
+class ArtistsFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
     private lateinit var audioAdapter: AudioListRecyclerAdapter
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentArtistsBinding
     private var audioDB = listOf<Audio>()
         set(value) {
             if (field == value) return
@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentArtistsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
                 AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
 
                     override fun click(audio: Audio) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(audio)
+                        (requireActivity() as MainActivity).launchPlaylistsFragment(audio)
                     }
                 })
             adapter = audioAdapter

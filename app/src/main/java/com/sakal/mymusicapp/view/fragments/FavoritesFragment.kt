@@ -34,7 +34,7 @@ class FavoritesFragment : Fragment() {
         binding.favoritesRecycler.apply {
             audioAdapter = AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
                 override fun click(audio: Audio) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(audio)
+                    (requireActivity() as MainActivity).launchPlaylistsFragment(audio)
                 }
             })
             adapter = audioAdapter

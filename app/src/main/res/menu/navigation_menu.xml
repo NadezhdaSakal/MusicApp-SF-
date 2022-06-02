@@ -10,13 +10,9 @@
         android:icon="@drawable/ic_baseline_favorite"
         android:title="@string/menu_favorites_title_text"
         app:showAsAction="withText"/>
+
     <item
-        android:id="@+id/watch_later"
-        android:icon="@drawable/ic_baseline_latest"
-        android:title="@string/menu_latest_title_text"
-        app:showAsAction="withText"/>
-    <item
-        android:id="@+id/selections"
+        android:id="@+id/playlist"
         android:icon="@drawable/ic_baseline_playlists"
         android:title="@string/menu_selections_title_text"
         app:showAsAction="withText"/>
