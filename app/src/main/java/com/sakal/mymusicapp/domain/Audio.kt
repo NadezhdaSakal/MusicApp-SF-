@@ -2,7 +2,6 @@ package com.sakal.mymusicapp.domain
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.sakal.mymusicapp.data.Entity.dto.Image
 import kotlinx.android.parcel.Parcelize
 
 
@@ -13,7 +12,7 @@ data class Audio(
     @SerializedName("artist")
     val artist: String,
     @SerializedName("image")
-    val image: List<Image>,
+    val image: String,
     var isInFavorites: Boolean = false
 
 ) : Parcelable

@@ -7,15 +7,17 @@ import retrofit2.Call
 
 interface LastFMApi {
 
-    @GET("/2.0/?method=artist.gettrack&artist=cher&api_key=ac0af5806a8796b526f2cff61ad5a29f&format=json")
+    @GET("/2.0/?method=artist.gettrack&artist=cher&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
     fun getTracksArtist(
-        @Query("artist") artist: String
-
+        @Query("artist") artist: String,
+        @Query("page") page: Int
     ): Call<Results>
 
-    @GET("/2.0/?method=chart.gettopartists&api_key=ac0af5806a8796b526f2cff61ad5a29f&format=json")
-    fun getTopArtists(): Call<Artists>
-
+    @GET("/2.0/?method=chart.gettopartists&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
+    fun getTopArtists(
+        @Query("limit") limit: Int,
+        @Query("page") page: Int,
+    ): Call<Artists>
 
 }
 

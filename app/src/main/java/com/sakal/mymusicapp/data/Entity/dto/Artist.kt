@@ -13,7 +13,7 @@ data class Artist(
     @SerializedName("url")
     val url:String,
     @SerializedName("image")
-    val image: List<Image>,
+    val image: String,
     @SerializedName("streamable")
     val streamable: Int,
     @SerializedName("listeners")

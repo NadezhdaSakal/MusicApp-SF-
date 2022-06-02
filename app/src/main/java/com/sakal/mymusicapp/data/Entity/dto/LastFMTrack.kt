@@ -11,11 +11,12 @@ data class LastFMTrack(
     @SerializedName("artist")
     val artist: String,
     @SerializedName("image")
-     val image: List<Image>,
+    val image: String,
     @SerializedName("listeners")
     val listeners: String,
     @SerializedName("playcount")
-    val playcount: String,
+    val playcount: String
 
     ) : Parcelable
+
 

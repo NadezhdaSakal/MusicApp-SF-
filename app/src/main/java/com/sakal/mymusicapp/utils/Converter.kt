@@ -9,7 +9,7 @@ object Converter {
         val result = mutableListOf<Audio>()
         list?.forEach {
             result.add(Audio(
-                artist="",
+                artist=it.name,
                 name = it.name,
                 image = it.image,
                 isInFavorites = false

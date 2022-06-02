@@ -6,10 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Artists(
-    val page: Int,
-    val perPage: Int,
-    val totalPages: Int,
-    val total: Int,
+    @SerializedName("@attr")
+    val attr: Attr,
     @SerializedName("artist")
     val artist: List<Artist>
-    )
+    ) :Parcelable
