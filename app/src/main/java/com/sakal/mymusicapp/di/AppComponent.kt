@@ -15,7 +15,10 @@ import javax.inject.Singleton
         DomainModule::class
     ]
 )
+
 interface AppComponent {
-    fun inject (homeFragmentViewModel: HomeFragmentViewModel)
+    fun inject(homeFragmentViewModel: HomeFragmentViewModel)
 }
+
+
 
