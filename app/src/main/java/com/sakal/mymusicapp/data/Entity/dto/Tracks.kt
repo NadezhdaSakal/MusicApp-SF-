@@ -1,13 +1,14 @@
 package com.sakal.mymusicapp.data.Entity.dto
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import android.os.Parcelable
 
 @Parcelize
-data class Artists(
+data class Tracks(
     @SerializedName("@attr")
-    val attr: AttrArtist,
-    @SerializedName("artist")
-    val artist: List<Artist>
+    val attr: AttrTrack,
+    @SerializedName("track")
+    val track: List<LastFMTrack>
 ) : Parcelable
+

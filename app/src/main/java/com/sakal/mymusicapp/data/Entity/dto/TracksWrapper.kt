@@ -5,12 +5,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-
-data class Results(
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("artist")
-    val artist: String,
-    @SerializedName("image")
-    val image: List<Image>
+data class TracksWrapper(
+    @SerializedName("Tracks")
+    val Tracks: Tracks
 ) : Parcelable
+

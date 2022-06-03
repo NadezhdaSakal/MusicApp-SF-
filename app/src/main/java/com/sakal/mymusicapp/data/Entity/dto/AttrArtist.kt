@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Attr(
+data class AttrArtist(
     @SerializedName("page")
     val page: String,
     @SerializedName("perPage")
