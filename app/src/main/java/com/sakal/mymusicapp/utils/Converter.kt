@@ -1,6 +1,7 @@
 package com.sakal.mymusicapp.utils
 
-import com.sakal.mymusicapp.data.Entity.dto.Artist
+import com.sakal.mymusicapp.data.Entity.Artists.Artist
+import com.sakal.mymusicapp.data.Entity.Tracks.Track
 import com.sakal.mymusicapp.domain.Audio
 
 object Converter {
@@ -12,7 +13,18 @@ object Converter {
                 artist=it.name,
                 name = it.name,
                 image = it.image[1].text,
-                isInFavorites = false
+            ))
+        }
+        return result
+    }
+
+    fun convertApiTrackListToDTOList(list: List<Track>?): List<Audio> {
+        val result = mutableListOf<Audio>()
+        list?.forEach {
+            result.add(Audio(
+                artist=it.name,
+                name = it.name,
+                image = it.image
             ))
         }
         return result
