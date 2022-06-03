@@ -43,6 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/ava"
                 app:layout_constraintRight_toRightOf="parent"

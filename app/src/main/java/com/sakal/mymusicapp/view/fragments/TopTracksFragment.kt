@@ -23,7 +23,7 @@ class  TopTracksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AnimationHelper.performFragmentCircularRevealAnimation(playlists, requireActivity(), 4)
+        AnimationHelper.performFragmentCircularRevealAnimation(toptracks, requireActivity(), 4)
     }
 
 }
