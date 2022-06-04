@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Artists(
-    @SerializedName("artists")
-    val arists:List<Artist>
-) :Parcelable
+data class Streamable(
+    @SerializedName("text")
+    val text: String,
+    @SerializedName("fulltrack")
+    val fulltrack: String
 
-
-
+) : Parcelable

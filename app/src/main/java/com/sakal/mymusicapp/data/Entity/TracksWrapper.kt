@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TracksWrapper(
-    @SerializedName("track")
-    val track: Track
+    @SerializedName("tracks")
+    val tracks: Tracks
 
 ) : Parcelable

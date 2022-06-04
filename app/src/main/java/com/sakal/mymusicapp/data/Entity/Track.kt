@@ -18,6 +18,10 @@ data class Track(
     val mbid: String,
     @SerializedName("url")
     val url:String,
+    @SerializedName("streamable")
+    val streamable: Streamable,
+    @SerializedName("artist")
+    val artist: Artist,
     @SerializedName ("image")
     val image: List<Image>
     ) : Parcelable
