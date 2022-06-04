@@ -8,14 +8,14 @@ import retrofit2.http.Query
 
 interface LastFMApi {
 
-    @GET("?method=artist.gettoptracks&artis=cher&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
+    @GET("?method=artist.gettoptracks&artist=louna&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
     fun getTracksArtist(
-        @Query("mbid") mbid: String,
+       // @Query("mbid") mbid: String,
         @Query("limit") limit: Int,
         @Query("page") page: Int
     ): Call<TracksWrapper>
 
-    @GET("/2.0/?method=artist.getinfo&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
+    @GET("?method=artist.getinfo&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
     fun getArtistInfo(
         @Query("mbid") id: String
     ): Call<Artist>

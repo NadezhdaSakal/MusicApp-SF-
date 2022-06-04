@@ -28,11 +28,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun launchPlaylistsFragment(audio: Audio) {
+    fun launchTopTracksFragment(audio: Audio) {
         val bundle = Bundle()
 
         bundle.putParcelable("audio", audio)
         val fragment = TopTracksFragment()
+
+        fragment.arguments = bundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_placeholder, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun launchDetailsFragment(audio: Audio) {
+        val bundle = Bundle()
+
+        bundle.putParcelable("audio", audio)
+        val fragment = DetailsFragment()
+
         fragment.arguments = bundle
 
         supportFragmentManager
@@ -60,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.playlist -> {
                     val tag = "playlist"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: TopTracksFragment(), tag)
+                    changeFragment( fragment?: PlaylistFragment(), tag)
                     true
                 }
                 else -> false

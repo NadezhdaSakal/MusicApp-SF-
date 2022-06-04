@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,6 @@ import com.sakal.mymusicapp.view.MainActivity
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_artists.*
-import java.util.*
 
 
 class ArtistsFragment : Fragment() {
@@ -32,6 +30,7 @@ class ArtistsFragment : Fragment() {
             field = value
             audioAdapter.addItems(field)
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -48,47 +47,22 @@ class ArtistsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(artists, requireActivity(), 1)
 
-        initSearchView()
         initRecyckler()
         viewModel.audioListLiveData.observe(viewLifecycleOwner, Observer<List<Audio>> {
             audioDB = it
         })
 
     }
-    private fun initSearchView() {
-        search_view.setOnClickListener {
-            search_view.isIconified = false
-        }
-
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isEmpty()) {
-                    audioAdapter.addItems(audioDB)
-                    return true
-                }
-                val result = audioDB.filter {
-                    it.name.lowercase(Locale.getDefault())
-                        .contains(newText.lowercase(Locale.getDefault()))
-                }
-                audioAdapter.addItems(result)
-                return true
-            }
-        })
-    }
 
     private fun initRecyckler() {
-        main_recycler.apply {
+        artist_recycler.apply {
             audioAdapter =
                 AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
 
                     override fun click(audio: Audio) {
-                        (requireActivity() as MainActivity).launchPlaylistsFragment(audio)
+                        (requireActivity() as MainActivity).launchTopTracksFragment(audio)
                     }
                 })
             adapter = audioAdapter
