@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp.view.fragments
+/*package com.sakal.mymusicapp.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -74,5 +74,5 @@ class ArtistsFragment : Fragment() {
 
 }
 
-
+*/
 

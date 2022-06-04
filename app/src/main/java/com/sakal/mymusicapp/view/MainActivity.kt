@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_placeholder, ArtistsFragment())
+            .add(R.id.fragment_placeholder, TopTracksFragment())
             .addToBackStack(null)
             .commit()
 
     }
 
-    fun launchTopTracksFragment(audio: Audio) {
+   /* fun launchTopTracksFragment(audio: Audio) {
         val bundle = Bundle()
 
         bundle.putParcelable("audio", audio)
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
     }
-
+*/
     fun launchDetailsFragment(audio: Audio) {
         val bundle = Bundle()
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: ArtistsFragment(), tag)
+                    changeFragment( fragment?: TopTracksFragment(), tag)
                     true
                 }
                 R.id.favorites -> {

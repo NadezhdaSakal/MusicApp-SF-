@@ -15,7 +15,7 @@ class HomeFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
-        interactor.getArtistsFromApi(1, object : ApiCallback {
+        interactor.getTracksFromApi(1, object : ApiCallback {
             override fun onSuccess(audio: List<Audio>) {
                 audioListLiveData.postValue(audio)
             }
