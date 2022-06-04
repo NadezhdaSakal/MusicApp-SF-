@@ -11,7 +11,6 @@ data class Artist(
     @SerializedName("mbid")
     val mbid:String,
     @SerializedName("url")
-    val url:String,
-    @SerializedName("image")
-    val image: List<Image>
+    val url:String
+
     ) : Parcelable

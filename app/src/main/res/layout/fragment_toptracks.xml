@@ -39,8 +39,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tracks"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/audio_item">
+        tools:listitem="@layout/audio_item"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

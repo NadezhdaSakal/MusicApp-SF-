@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class AttrTrack(
+data class Attr(
     @SerializedName("page")
     val page: String,
     @SerializedName("perPage")
     val perPage: String,
-    @SerializedName("totalPages")
-    val totalPages: String,
     @SerializedName("total")
-    val total: String
+    val total: String,
+    @SerializedName("totalPages")
+    val totalPages: String
 ) : Parcelable
 
