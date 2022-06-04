@@ -1,8 +1,7 @@
 package com.sakal.mymusicapp.domain
 
 import com.sakal.mymusicapp.data.*
-import com.sakal.mymusicapp.data.Entity.Artists.ArtistsWrapper
-import com.sakal.mymusicapp.data.Entity.Tracks.TracksWrapper
+import com.sakal.mymusicapp.data.Entity.Tracks.Tracks
 import com.sakal.mymusicapp.utils.Converter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
@@ -27,13 +26,13 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     }
 */
     fun getTracksFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
-        retrofitService.getTracks(limit =50, page).enqueue(object : Callback<TracksWrapper> {
+        retrofitService.getTracks(limit =50, page).enqueue(object : Callback<Tracks> {
             override fun onResponse
-                        (call: Call<TracksWrapper>, response: Response<TracksWrapper>) {
-                callback.onSuccess(Converter.convertApiTrackListToDTOList(response.body()?.Tracks?.track))
+                        (call: Call<Tracks>, response: Response<Tracks>) {
+                callback.onSuccess(Converter.convertApiTrackListToDTOList(response.body()?.tracks))
             }
 
-            override fun onFailure(call: Call<TracksWrapper>, t: Throwable) {
+            override fun onFailure(call: Call<Tracks>, t: Throwable) {
                 callback.onFailure()
             }
         })

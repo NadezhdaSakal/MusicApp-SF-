@@ -8,6 +8,8 @@ import kotlinx.android.parcel.Parcelize
 data class Track(
     @SerializedName("name")
     val name: String,
+    @SerializedName("duration")
+    val duration: String,
     @SerializedName("mbid")
     val artist: String,
     @SerializedName("image")

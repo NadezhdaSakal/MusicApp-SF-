@@ -19,7 +19,7 @@ interface LastFMApi {
     fun getTracks(
         @Query("limit") limit: Int,
         @Query("page") page: Int
-    ): Call<TracksWrapper>
+    ): Call<Tracks>
 /*
 
     @GET("?method=chart.gettopartists&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
