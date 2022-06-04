@@ -6,12 +6,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class AttrTrack(
-    @SerializedName("track")
-    val track: String,
-    @SerializedName("artist")
-    val artist: String,
-    @SerializedName("image")
-    val image: String
-
-) :Parcelable
+    @SerializedName("page")
+    val page: String,
+    @SerializedName("perPage")
+    val perPage: String,
+    @SerializedName("totalPages")
+    val totalPages: String,
+    @SerializedName("total")
+    val total: String
+) : Parcelable
 
