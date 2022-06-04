@@ -32,6 +32,7 @@ class TopTracksFragment : Fragment() {
             field = value
             audioAdapter.addItems(field)
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -52,11 +53,13 @@ class TopTracksFragment : Fragment() {
 
         initSearchView()
         initRecyckler()
+
         viewModel.audioListLiveData.observe(viewLifecycleOwner, Observer<List<Audio>> {
             audioDB = it
         })
 
     }
+
     private fun initSearchView() {
         search_view.setOnClickListener {
             search_view.isIconified = false

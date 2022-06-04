@@ -28,21 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-   /* fun launchTopTracksFragment(audio: Audio) {
-        val bundle = Bundle()
-
-        bundle.putParcelable("audio", audio)
-        val fragment = TopTracksFragment()
-
-        fragment.arguments = bundle
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_placeholder, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
-*/
     fun launchDetailsFragment(audio: Audio) {
         val bundle = Bundle()
 

@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp.data.Entity.Tracks
+package com.sakal.mymusicapp.data.Entity
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -10,16 +10,16 @@ data class Track(
     val name: String,
     @SerializedName("duration")
     val duration: String,
-    @SerializedName("mbid")
-    val artist: String,
-    @SerializedName("image")
-    val image: String,
-    @SerializedName("listeners")
-    val listeners: String,
     @SerializedName("playcount")
     val playcount: String,
+    @SerializedName("listeners")
+    val listeners: String,
+    @SerializedName("mbid")
+    val mbid: String,
     @SerializedName("url")
-    val url:String
+    val url:String,
+    @SerializedName ("image")
+    val image: List<Image>
     ) : Parcelable
 
 

@@ -1,7 +1,6 @@
 package com.sakal.mymusicapp.utils
 
-import com.sakal.mymusicapp.data.Entity.Artists.Artist
-import com.sakal.mymusicapp.data.Entity.Tracks.Track
+import com.sakal.mymusicapp.data.Entity.Track
 import com.sakal.mymusicapp.domain.Audio
 
 object Converter {
@@ -26,7 +25,7 @@ object Converter {
             result.add(Audio(
                 artist=it.name,
                 name = it.name,
-                image = it.image
+                image = it.image[0].size
             ))
         }
         return result

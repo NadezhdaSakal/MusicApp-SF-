@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp.data.Entity.Artists
+package com.sakal.mymusicapp.data.Entity
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -13,12 +13,5 @@ data class Artist(
     @SerializedName("url")
     val url:String,
     @SerializedName("image")
-    val image: List<Image>,
-    @SerializedName("streamable")
-    val streamable: Int,
-    @SerializedName("listeners")
-    val listeners: String,
-    @SerializedName("playcount")
-    val playcount: String
-
+    val image: List<Image>
     ) : Parcelable

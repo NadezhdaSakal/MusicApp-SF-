@@ -1,7 +1,7 @@
 package com.sakal.mymusicapp.domain
 
 import com.sakal.mymusicapp.data.*
-import com.sakal.mymusicapp.data.Entity.Tracks.Tracks
+import com.sakal.mymusicapp.data.Entity.Tracks
 import com.sakal.mymusicapp.utils.Converter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
