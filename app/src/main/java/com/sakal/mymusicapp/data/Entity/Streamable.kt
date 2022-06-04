@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Streamable(
-    @SerializedName("text")
+    @SerializedName("#text")
     val text: String,
     @SerializedName("fulltrack")
     val fulltrack: String
