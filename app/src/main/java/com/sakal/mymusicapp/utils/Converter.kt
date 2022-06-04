@@ -6,7 +6,7 @@ import com.sakal.mymusicapp.domain.Audio
 
 object Converter {
 
-    fun convertApiListToDTOList(list: List<Artist>?): List<Audio> {
+   /* fun convertApiListToDTOList(list: List<Artist>?): List<Audio> {
         val result = mutableListOf<Audio>()
         list?.forEach {
             result.add(Audio(
@@ -17,6 +17,8 @@ object Converter {
         }
         return result
     }
+
+    */
 
     fun convertApiTrackListToDTOList(list: List<Track>?): List<Audio> {
         val result = mutableListOf<Audio>()
