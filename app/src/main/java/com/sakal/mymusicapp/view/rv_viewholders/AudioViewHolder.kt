@@ -4,7 +4,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.sakal.mymusicapp.domain.Audio
 import com.bumptech.glide.Glide
-import com.sakal.mymusicapp.data.Entity.Artist
 import kotlinx.android.synthetic.main.audio_item.view.*
 
 class AudioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
