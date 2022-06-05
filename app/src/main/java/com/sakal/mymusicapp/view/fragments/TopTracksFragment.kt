@@ -76,7 +76,7 @@ class TopTracksFragment : Fragment() {
                     return true
                 }
                 val result = audioDB.filter {
-                    it.name.lowercase(Locale.getDefault())
+                    it.track.lowercase(Locale.getDefault())
                         .contains(newText.lowercase(Locale.getDefault()))
                 }
                 audioAdapter.addItems(result)

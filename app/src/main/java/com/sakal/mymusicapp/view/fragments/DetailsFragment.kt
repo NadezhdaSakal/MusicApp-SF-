@@ -43,7 +43,7 @@ class DetailsFragment : Fragment() {
                 intent.action = Intent.ACTION_SEND
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
-                    "Check out this audio: ${audio.name} \n\n ${audio.artist}"
+                    "Check out this audio: ${audio.track} \n\n ${audio.artist}"
                 )
                 intent.type = "text/plain"
                 startActivity(Intent.createChooser(intent, "Share To:"))
@@ -58,7 +58,7 @@ class DetailsFragment : Fragment() {
                 .centerCrop()
                 .into(binding.detailsAva)
 
-            binding.detailsTitle.text = audio.name
+            binding.detailsTitle.text = audio.track
 
 
             binding.detailsFabFavorites.setImageResource(

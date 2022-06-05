@@ -9,9 +9,9 @@ object Converter {
         val result = mutableListOf<Audio>()
         list?.forEach {
             result.add(Audio(
-                artist=it.name,
-                name = it.name,
-                image = it.image[0].size
+                artist=it.artist.name,
+                track = it.name,
+                image = it.image[1].size
             ))
         }
         return result

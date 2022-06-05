@@ -8,7 +8,7 @@ import android.os.Parcelable
 data class Tracks(
     @SerializedName("@attr")
     val attr: Attr,
-    @SerializedName("tracks")
+    @SerializedName("track")
     val track: List<Track>
 ) : Parcelable
 
