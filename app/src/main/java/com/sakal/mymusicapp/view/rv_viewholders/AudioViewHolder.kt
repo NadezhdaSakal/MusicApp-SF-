@@ -2,7 +2,7 @@ package com.sakal.mymusicapp.view.rv_viewholders;
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.sakal.mymusicapp.domain.Audio
+import com.sakal.mymusicapp.data.entity.Audio
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.audio_item.view.*
 

@@ -9,7 +9,7 @@ import com.sakal.mymusicapp.R
 import android.content.Intent
 import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
 import com.bumptech.glide.Glide
-import com.sakal.mymusicapp.domain.Audio
+import com.sakal.mymusicapp.data.entity.Audio
 
 
 class DetailsFragment : Fragment() {

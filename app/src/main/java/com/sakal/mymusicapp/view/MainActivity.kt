@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.sakal.mymusicapp.*
 import com.sakal.mymusicapp.databinding.ActivityMainBinding
-import com.sakal.mymusicapp.domain.Audio
+import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.view.fragments.*
 
 

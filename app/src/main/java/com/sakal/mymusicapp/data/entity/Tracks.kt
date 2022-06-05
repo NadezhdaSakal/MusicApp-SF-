@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp.data.Entity
+package com.sakal.mymusicapp.data.entity
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize

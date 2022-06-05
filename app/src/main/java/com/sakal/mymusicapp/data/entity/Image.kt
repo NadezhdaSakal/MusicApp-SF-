@@ -1,4 +1,4 @@
-package com.sakal.mymusicapp.data.Entity
+package com.sakal.mymusicapp.data.entity
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

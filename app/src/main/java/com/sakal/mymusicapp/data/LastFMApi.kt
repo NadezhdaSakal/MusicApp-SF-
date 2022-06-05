@@ -1,6 +1,6 @@
 package com.sakal.mymusicapp.data
 
-import com.sakal.mymusicapp.data.Entity.TracksWrapper
+import com.sakal.mymusicapp.data.entity.TracksWrapper
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
