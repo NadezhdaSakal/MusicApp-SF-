@@ -2,8 +2,6 @@ package com.sakal.mymusicapp.utils
 
 import com.sakal.mymusicapp.data.Entity.Track
 import com.sakal.mymusicapp.domain.Audio
-import com.sakal.mymusicapp.data.Entity.Artist
-import com.sakal.mymusicapp.data.Entity.Image
 
 object Converter {
 
@@ -12,8 +10,8 @@ object Converter {
         list?.forEach {
             result.add(Audio(
                 track = it.name,
-                artist = it.artist.name,
-                image = it.image[1].size
+                artist = it.artist?.name,
+                image = it.image[1]?.text
             ))
         }
         return result
