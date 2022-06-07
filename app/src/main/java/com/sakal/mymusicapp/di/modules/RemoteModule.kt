@@ -1,4 +1,5 @@
 package com.sakal.mymusicapp.di.modules
+
 import com.sakal.mymusicapp.BuildConfig
 import com.sakal.mymusicapp.data.ApiConstants
 import com.sakal.mymusicapp.data.LastFMApi
