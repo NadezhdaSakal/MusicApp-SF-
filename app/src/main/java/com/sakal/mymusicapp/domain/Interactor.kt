@@ -19,7 +19,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                     repo.putToDb(list)
                     callback.onSuccess(list)
 
-                }
+            }
 
                 override fun onFailure(call: Call<TracksWrapper>, t: Throwable) {
                     callback.onFailure()

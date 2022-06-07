@@ -54,7 +54,7 @@ class TopTracksFragment : Fragment() {
         initSearchView()
         initRecyckler()
 
-        viewModel.audioListLiveData.observe(viewLifecycleOwner, Observer<List<Audio>> {
+        viewModel.tracksListLiveData.observe(viewLifecycleOwner, Observer<List<Audio>> {
             audioDB = it
         })
 
