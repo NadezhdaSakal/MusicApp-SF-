@@ -66,6 +66,14 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.35.1'
     kapt 'com.google.dagger:dagger-compiler:2.35.1'
 
+    //paging
+    implementation("androidx.paging:paging-rxjava2:2.1.2")
+
+
+    def lifecycle_version = "2.2.0"  //lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 
 
     //Room

@@ -30,6 +30,30 @@ class HomeFragmentViewModel : ViewModel() {
             }
         })
     }
+
+    fun doSearchPagination(
+        visibleItemCount: Int,
+        totalItemCount: Int,
+        pastVisibleItemCount: Int,
+        query: String
+    ) {
+        //Выясняем через переменную, нужна ли загрузка
+        if (Interactor.needLoading) {
+            //Если у нас при скролле список подходит к концу, то загружем еще порцию
+            if ((visibleItemCount + pastVisibleItemCount) >= totalItemCount - 5) {
+                Interactor.needLoading = false
+
+                val page = currentlyLoadedSearchPage++
+                if (page > totalPagersFromSearch) return
+
+                showProgressBarLiveData.postValue(true)
+                //Метод для получения фильмов с API, как видите, мы явно указываем, какую страницу
+                //нужно загружать
+                getDataFromSearch(query, page)
+            }
+        }
+    }
+
     interface ApiCallback {
         fun onSuccess(audio: List<Audio>)
         fun onFailure()
