@@ -11,9 +11,9 @@ import com.sakal.mymusicapp.data.db.AppDatabase
 
 @Module
 class DatabaseModule {
+
     @Singleton
     @Provides
-
     fun provideTrackDao(context: Context) =
         Room.databaseBuilder(
             context,
