@@ -62,15 +62,17 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
 
-    //dagger
+    //Dagger
     implementation 'com.google.dagger:dagger:2.35.1'
     kapt 'com.google.dagger:dagger-compiler:2.35.1'
 
-    //paging
-    implementation("androidx.paging:paging-rxjava2:2.1.2")
+    //Paging
+    def paging_version = "3.0.0"
+    "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha08"
 
-
-    def lifecycle_version = "2.2.0"  //lifecycle
+    //Lifecycle
+    def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
