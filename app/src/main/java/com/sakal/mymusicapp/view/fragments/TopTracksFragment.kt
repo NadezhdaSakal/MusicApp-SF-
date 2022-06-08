@@ -102,31 +102,9 @@ class TopTracksFragment : Fragment() {
             addItemDecoration(decorator)
         }
     }
-    private fun RecyclerView.initSearchPagination() {
-        //Добавляем слушатель для скролла нашего RV
-        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                //Если по оси Y есть изменение
-                if (dy > 0) {
-                    //Получаем количество видимых элементов
-                    val visibleItemCount = recyclerView.layoutManager!!.childCount
-                    //Получаем количесвто общих элементов
-                    val totalItemCount = recyclerView.layoutManager!!.itemCount
-                    //Находим первый видиимый элемент при скролле
-                    val pastVisibleItemCount =
-                        (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
-                    //Совсем этим вызываем метод для пагинации
-                    viewModel.doSearchPagination(
-                        visibleItemCount,
-                        totalItemCount,
-                        pastVisibleItemCount,
-                        query
-                    )
-                }
-            }
-        })
+
 
 }
 
-}
+
 
