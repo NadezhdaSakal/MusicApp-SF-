@@ -1,27 +1,19 @@
 package com.sakal.mymusicapp.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
-import com.sakal.mymusicapp.data.MainRepository
-import com.sakal.mymusicapp.data.entity.TracksWrapper
-import kotlinx.coroutines.flow.Flow
+import com.sakal.mymusicapp.TracksPagingDataSource
+import com.sakal.mymusicapp.data.LastFMApi
 
-class TracksViewModel @ViewModelInject constructor(
-    private val mainRepository: MainRepository
-) : HomeFragmentViewModel() {
-    private lateinit var _tracksFlow: Flow<PagingData<TracksWrapper>>
-    val tracksFlow: Flow<PagingData<TracksWrapper>>
-        get() = _tracksFlow
-
-    init {
-        getTracks()
-    }
-
-    private fun getTracks() = launchPagingAsync({
-        mainRepository.gettracks().cachedIn(viewModelScope)
-    }, {
-        _tracksFlow = it
-    })
+class TracksViewModel (
+private val api: LastFMApi
+) : ViewModel() {
+    val tracks =
+        Pager(config = PagingConfig(pageSize = 10), pagingSourceFactory = {
+            TracksPagingDataSource (api)
+        }).flow.cachedIn(viewModelScope)
 }
+
