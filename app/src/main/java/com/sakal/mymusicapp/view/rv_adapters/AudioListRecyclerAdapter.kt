@@ -2,9 +2,12 @@ package com.sakal.mymusicapp.view.rv_adapters;
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.data.entity.Audio
+import com.sakal.mymusicapp.data.entity.Tracks
+import com.sakal.mymusicapp.data.entity.TracksWrapper
 import com.sakal.mymusicapp.view.rv_viewholders.AudioViewHolder
 import kotlinx.android.synthetic.main.audio_item.view.*
 
@@ -34,8 +37,22 @@ class AudioListRecyclerAdapter(private val clickListener: OnItemClickListener) :
         items.addAll(list)
         notifyDataSetChanged()
     }
+    inner class TracksPagingAdapter :
+        PagingDataAdapter<Tracks, TracksPagingAdapter>(com.sakal.mymusicapp.view.rv_adapters.TracksPagingAdapter.TracksComparator) {
 
-    interface OnItemClickListener {
+        object TracksComparator : DiffUtil.ItemCallback<TracksWrapper>() {
+        override fun areItemsTheSame(oldItem: Tracks, newItem: Tracks): Boolean {
+            return oldItem._id == newItem._id
+        }
+
+        override fun areContentsTheSame(oldItem: Tracks, newItem: Tracks): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+
+
+interface OnItemClickListener {
         fun click(audio: Audio)
     }
 }

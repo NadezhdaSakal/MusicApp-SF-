@@ -10,7 +10,7 @@ import com.sakal.mymusicapp.data.LastFMApi
 
 class TracksViewModel (
 private val api: LastFMApi
-) : ViewModel() {
+) : HomeFragmentViewModel() {
     val tracks =
         Pager(config = PagingConfig(pageSize = 10), pagingSourceFactory = {
             TracksPagingDataSource (api)
