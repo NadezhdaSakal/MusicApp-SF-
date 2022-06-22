@@ -53,9 +53,6 @@ dependencies {
     //Coordinator layout
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
 
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -67,9 +64,22 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.35.1'
 
     //Paging
-    def paging_version = "3.0.0"
-    "androidx.paging:paging-runtime:$paging_version"
-    implementation "androidx.paging:paging-compose:1.0.0-alpha08"
+    implementation "androidx.paging:paging-runtime:3.2.0-alpha01"
+
+    //viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
+
+    //Glide to load images from URL
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'androidx.databinding:databinding-runtime:7.2.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+
+
 
     //Room
     def room_version = "2.4.2"

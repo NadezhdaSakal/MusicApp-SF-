@@ -8,7 +8,7 @@ class TracksViewModelFactory (
     private val api: LastFMApi
     ): ViewModelProvider.NewInstanceFactory(){
 
-        override fun <T : ViewModel?> create(ModelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return TracksViewModel(api) as T
         }
     }
