@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sakal.mymusicapp.domain.Audio
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.view.rv_adapters.TopSpacingItemDecoration
 import com.sakal.mymusicapp.databinding.FragmentFavoritesBinding
+import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_favorites.*

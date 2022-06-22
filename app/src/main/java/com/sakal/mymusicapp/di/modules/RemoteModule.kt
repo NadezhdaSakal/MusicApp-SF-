@@ -1,7 +1,8 @@
 package com.sakal.mymusicapp.di.modules
+
 import com.sakal.mymusicapp.BuildConfig
 import com.sakal.mymusicapp.data.ApiConstants
-import com.sakal.mymusicapp.data.JamendoAPI
+import com.sakal.mymusicapp.data.LastFMApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -35,5 +36,5 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideJamendoAPI(retrofit: Retrofit): JamendoAPI = retrofit.create(JamendoAPI::class.java)
+    fun provideLastFMApi(retrofit: Retrofit): LastFMApi = retrofit.create(LastFMApi::class.java)
 }

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sakal.mymusicapp.R
-import com.sakal.mymusicapp.domain.Audio
+import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.view.rv_viewholders.AudioViewHolder
 import kotlinx.android.synthetic.main.audio_item.view.*
 
