@@ -11,7 +11,7 @@ class TracksDataSource(private val api: LastFMApi) : PagingSource<Int, Track>() 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
         return try {
             val nextPageNumber = params.key ?: 0
-            val response: Call<TracksWrapper> = api.getTracks()
+            val response: Call<TracksWrapper> = api.getTracks(params)
 
             LoadResult.Page(
                 data = response.tracks,
