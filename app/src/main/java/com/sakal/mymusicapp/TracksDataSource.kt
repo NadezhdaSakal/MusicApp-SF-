@@ -11,10 +11,10 @@ class TracksDataSource(private val api: LastFMApi) : PagingSource<Int, Track>() 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
         return try {
             val nextPageNumber = params.key ?: 0
-            val response: Call<TracksWrapper> = api.getTracks(params)
+            val response: Call<TracksWrapper> = api.getTracks(limit = 100, page =1)
 
             LoadResult.Page(
-                data = response.tracks,
+                data = response.body()?.tracks?.track,
                 prevKey = if (nextPageNumber > 0) nextPageNumber - 1 else null,
                 nextKey = if (nextPageNumber < response.totalPages) nextPageNumber + 1 else null
             )

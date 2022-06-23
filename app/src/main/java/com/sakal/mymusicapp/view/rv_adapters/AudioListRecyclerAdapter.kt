@@ -6,36 +6,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.view.rv_viewholders.AudioViewHolder
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
+import com.sakal.mymusicapp.data.entity.Track
+import com.sakal.mymusicapp.databinding.AudioItemBinding
 import kotlinx.android.synthetic.main.audio_item.view.*
 
 
-class AudioListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val items = mutableListOf<Audio>()
+class AudioListRecyclerAdapter:
+PagingDataAdapter<Track, AudioListRecyclerAdapter.AudioViewHolder>(TracksComparator) {
 
-    override fun getItemCount() = items.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return AudioViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.audio_item, parent, false))
+    override fun onBindViewHolder(holder: AudioViewHolder, position: Int) {
+        val item = getItem(position)
+        item?.let { holder.bind(it) }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is AudioViewHolder -> {
-                holder.bind(items[position])
-                holder.itemView.item_container.setOnClickListener {
-                    clickListener.click(items[position])
-                }
-            }
+    object TracksComparator : DiffUtil.ItemCallback<Track>() {
+        override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean {
+            return oldItem._id == newItem._id
         }
-    }
 
-    fun addItems(list: List<Audio>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
-    }
-
-    interface OnItemClickListener {
-        fun click(audio: Audio)
+        override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean {
+            return oldItem == newItem
+        }
     }
 }
