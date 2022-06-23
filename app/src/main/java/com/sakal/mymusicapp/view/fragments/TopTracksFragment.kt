@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sakal.mymusicapp.view.rv_adapters.TopSpacingItemDecoration
 import com.sakal.mymusicapp.databinding.FragmentToptracksBinding
 import com.sakal.mymusicapp.data.entity.Audio
+import com.sakal.mymusicapp.data.entity.Track
+import com.sakal.mymusicapp.databinding.AudioItemBinding
 import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
@@ -88,10 +90,14 @@ class TopTracksFragment : Fragment() {
     private fun initRecyckler() {
         tracks_recycler.apply {
             audioAdapter =
-                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener() {
+                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.TrackClickListener {
 
                     fun click(audio: Audio) {
                         (requireActivity() as MainActivity).launchDetailsFragment(audio)
+                    }
+
+                    override fun onTrackClicked(binding: AudioItemBinding, track: Track) {
+                        TODO("Not yet implemented")
                     }
                 })
             adapter = audioAdapter
