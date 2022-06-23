@@ -88,9 +88,9 @@ class TopTracksFragment : Fragment() {
     private fun initRecyckler() {
         tracks_recycler.apply {
             audioAdapter =
-                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
+                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener() {
 
-                    override fun click(audio: Audio) {
+                    fun click(audio: Audio) {
                         (requireActivity() as MainActivity).launchDetailsFragment(audio)
                     }
                 })

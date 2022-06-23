@@ -32,8 +32,9 @@ class FavoritesFragment : Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(favorites_fragment_root, requireActivity(),2)
 
         binding.favoritesRecycler.apply {
-            audioAdapter = AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
-                override fun click(audio: Audio) {
+            audioAdapter = AudioListRecyclerAdapter(object :
+                AudioListRecyclerAdapter.OnItemClickListener() {
+                fun click(audio: Audio) {
                     (requireActivity() as MainActivity).launchDetailsFragment(audio)
                 }
             })
