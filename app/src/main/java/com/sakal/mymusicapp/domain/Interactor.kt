@@ -7,18 +7,34 @@ import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.data.entity.Track
 import com.sakal.mymusicapp.data.entity.TracksWrapper
 import com.sakal.mymusicapp.utils.Converter
+import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import retrofit2.*
 
-class Interactor (private val repo: MainRepository, private val api: LastFMApi) : PagingSource<Int, Track>() {
+class Interactor(private val repo: MainRepository, private val api: LastFMApi):
+    PagingSource<Int, Track>() {
+
+
+    fun  getTracksFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
+            api.getTracks(limit = 50, page).enqueue(object : Callback<TracksWrapper> {
+
+                override fun onResponse(call: Call<TracksWrapper>, response: Response<TracksWrapper>) {
+                    val list = Converter.convertApiTrackListToDTOList(response.body()?.tracks?.track)
+                    repo.putToDb(list)
+                    callback.onSuccess(list)
+
+                }
+
+                override fun onFailure(call: Call<TracksWrapper>, t: Throwable) {
+                    callback.onFailure()
+                }
+            })
+        }
 
         override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
             return try {
                 val nextPageNumber = params.key ?: 0
                 val query: Call<TracksWrapper> = api.getTracks(50, 1)
                 val response: Response<TracksWrapper> = query.awaitResponse()
-                val list = Converter.convertApiTrackListToDTOList(response.body()?.tracks?.track)
-                repo.putToDb(list)
-
 
                 LoadResult.Page(
                     data = response.body()?.tracks!!.track,
@@ -36,6 +52,7 @@ class Interactor (private val repo: MainRepository, private val api: LastFMApi) 
     fun getTracksFromDB(): List<Audio> = repo.getAllFromDB()
 
 }
+
 
 
 

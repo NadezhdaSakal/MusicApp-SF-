@@ -16,5 +16,5 @@ class DomainModule(val context: Context) {
     @Singleton
     @Provides
     fun provideInteractor(repository: MainRepository, LastFMApi: LastFMApi) =
-        Interactor(repo = repository, retrofitService = LastFMApi)
+        Interactor(repo = repository, api = LastFMApi)
 }
