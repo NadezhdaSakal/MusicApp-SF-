@@ -1,15 +1,26 @@
 package com.sakal.mymusicapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.sakal.mymusicapp.App
+import com.sakal.mymusicapp.data.LastFMApi
+import com.sakal.mymusicapp.data.MainRepository
 import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.domain.Interactor
-import java.util.concurrent.Executors
 import javax.inject.Inject
 
-class HomeFragmentViewModel : ViewModel() {
-    val tracksListLiveData: MutableLiveData<List<Audio>> = MutableLiveData()
+class HomeFragmentViewModel (
+private val api: LastFMApi,
+private val repo: MainRepository
+) : ViewModel() {
+
+    val tracks =
+        Pager(config = PagingConfig(pageSize = 10, prefetchDistance = 2), pagingSourceFactory = {
+            Interactor(repo, api)
+        }).flow.cachedIn(viewModelScope)
 
     @Inject
     lateinit var interactor: Interactor
@@ -19,18 +30,8 @@ class HomeFragmentViewModel : ViewModel() {
         getTracks()
     }
 
-    fun getTracks() {
-        interactor.getTracksFromApi(1, object : ApiCallback {
-            override fun onSuccess(tracks: List<Audio>) {
-                tracksListLiveData.postValue(tracks)
-            }
-
-            override fun onFailure() {
-                Executors.newSingleThreadExecutor().execute {
-                    tracksListLiveData.postValue(interactor.getTracksFromDB())
-                }
-            }
-        })
+    private fun getTracks() {
+        TODO("Not yet implemented")
     }
 
     interface ApiCallback {
@@ -39,5 +40,3 @@ class HomeFragmentViewModel : ViewModel() {
 
     }
 }
-
-

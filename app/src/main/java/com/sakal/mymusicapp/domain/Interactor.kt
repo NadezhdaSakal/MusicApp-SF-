@@ -1,64 +1,45 @@
 package com.sakal.mymusicapp.domain
 
+import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sakal.mymusicapp.data.*
-import com.sakal.mymusicapp.data.entity.Audio
-import com.sakal.mymusicapp.data.entity.Track
-import com.sakal.mymusicapp.data.entity.TracksWrapper
-import com.sakal.mymusicapp.utils.Converter
-import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
-import retrofit2.*
+import com.sakal.mymusicapp.data.entity.*
+import com.sakal.mymusicapp.data.LastFMApi
+import com.sakal.mymusicapp.data.MainRepository
 
-class Interactor(private val repo: MainRepository, private val api: LastFMApi):
+class Interactor(private val repo: MainRepository, private val api: LastFMApi
+) :
     PagingSource<Int, Track>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
+        val pageNumber = params.key ?: 1
+        return try {
+            val response = api.getTracks(100,1)
+            val pagedResponse = response.body()?.tracks?.track
+            val data = pagedResponse?.results
 
-
-    fun  getTracksFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
-            api.getTracks(limit = 50, page).enqueue(object : Callback<TracksWrapper> {
-
-                override fun onResponse(call: Call<TracksWrapper>, response: Response<TracksWrapper>) {
-                    val list = Converter.convertApiTrackListToDTOList(response.body()?.tracks?.track)
-                    repo.putToDb(list)
-                    callback.onSuccess(list)
-
-                }
-
-                override fun onFailure(call: Call<TracksWrapper>, t: Throwable) {
-                    callback.onFailure()
-                }
-            })
-        }
-
-        override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
-            return try {
-                val nextPageNumber = params.key ?: 0
-                val query: Call<TracksWrapper> = api.getTracks(50, 1)
-                val response: Response<TracksWrapper> = query.awaitResponse()
-
-                LoadResult.Page(
-                    data = response.body()?.tracks!!.track,
-                    prevKey = if (nextPageNumber > 0) nextPageNumber - 1 else null,
-                    nextKey = if (nextPageNumber < response.body()?.tracks?.attr?.totalPages!!.toInt()) nextPageNumber + 1 else null
-                )
-            } catch (e: Exception) {
-                LoadResult.Error(e)
+            var nextPageNumber: Int? = null
+            if (pagedResponse?.pageInfo?.next != null) {
+                val uri = Uri.parse(pagedResponse.pageInfo.next)
+                val nextPageQuery = uri.getQueryParameter("page")
+                nextPageNumber = nextPageQuery?.toInt()
             }
-        }
 
-        override fun getRefreshKey(state: PagingState<Int, Track>): Int? {
-            TODO("Not yet implemented")
+            LoadResult.Page(
+                data = data.orEmpty(),
+                prevKey = null,
+                nextKey = nextPageNumber
+            )
+        } catch (e: Exception) {
+            LoadResult.Error(e)
         }
-    fun getTracksFromDB(): List<Audio> = repo.getAllFromDB()
+    }
+    override fun getRefreshKey(state: PagingState<Int, Track>): Int? = 1
+
+    fun getTracksFromDB(): List<Audio> {
+        return repo.getAllFromDB()
+    }
 
 }
-
-
-
-
-
-
-
 
 
 
