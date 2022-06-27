@@ -6,14 +6,15 @@ import androidx.paging.PagingState
 import com.sakal.mymusicapp.data.entity.*
 import com.sakal.mymusicapp.data.LastFMApi
 import com.sakal.mymusicapp.data.MainRepository
+import com.sakal.mymusicapp.data.preference.PreferenceProvider
 
-class Interactor(private val repo: MainRepository, private val api: LastFMApi
+class Interactor(private val repo: MainRepository, private val api: LastFMApi, private val preferences: PreferenceProvider
 ) :
     PagingSource<Int, Track>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
         val pageNumber = params.key ?: 1
         return try {
-            val response = api.getTracks(100,1)
+            val response = api.getTracks()
             val pagedResponse = response.body()?.tracks?.track
             val data = pagedResponse?.results
 
@@ -34,6 +35,13 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi
         }
     }
     override fun getRefreshKey(state: PagingState<Int, Track>): Int? = 1
+
+    fun saveDefaultCategoryToPreferences(category: String) {
+        preferences.saveDefaultCategory(category)
+    }
+    //Метод для получения настроек
+    fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
+
 
     fun getTracksFromDB(): List<Audio> {
         return repo.getAllFromDB()

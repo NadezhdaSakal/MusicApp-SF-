@@ -11,17 +11,12 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.databinding.FragmentDetailsBinding
 import com.sakal.mymusicapp.view.notification.NotificationHelper
-import com.sakal.mymusicapp.viewmodel.DetailsFragmentViewModel
-import kotlinx.coroutines.*
 
 class DetailsFragment : Fragment() {
     private lateinit var audio: Audio
@@ -75,7 +70,7 @@ class DetailsFragment : Fragment() {
             .centerCrop()
             .into(binding.detailsAva)
 
-        binding.detailsTitle.text = audio.track
+        binding.detailsTrack.text = audio.track
 
 
         binding.detailsFabFavorites.setImageResource(

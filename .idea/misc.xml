@@ -34,6 +34,7 @@
         <entry key="app/src/main/res/layout/fragment_latest.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_playlist.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_playlists.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.22418478260869565" />
         <entry key="app/src/main/res/layout/fragment_toptracks.xml" value="0.1" />
         <entry key="app/src/main/res/menu/app_bar.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_player_control.xml" value="0.2520833333333333" />
