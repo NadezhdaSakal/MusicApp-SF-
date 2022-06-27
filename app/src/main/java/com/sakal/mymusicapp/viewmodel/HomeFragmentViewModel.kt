@@ -1,42 +1,35 @@
 package com.sakal.mymusicapp.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import com.sakal.mymusicapp.App
-import com.sakal.mymusicapp.data.LastFMApi
-import com.sakal.mymusicapp.data.MainRepository
 import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.domain.Interactor
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.PublishSubject
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class HomeFragmentViewModel (
-private val api: LastFMApi,
-private val repo: MainRepository
-) : ViewModel() {
-
-    val tracks =
-        Pager(config = PagingConfig(pageSize = 10, prefetchDistance = 2), pagingSourceFactory = {
-            Interactor(repo, api)
-        }).flow.cachedIn(viewModelScope)
-
+class HomeFragmentViewModel : ViewModel() {
+    //Инициализируем интерактор
     @Inject
     lateinit var interactor: Interactor
+    val tracksListData: Observable<List<Audio>>
+    val showProgressBar: BehaviorSubject<Boolean>
 
     init {
         App.instance.dagger.inject(this)
+        showProgressBar = interactor.progressBarState
+        tracksListData = interactor.getTracksFromDB()
         getTracks()
     }
 
-    private fun getTracks() {
-        TODO("Not yet implemented")
+    fun getTracks() {
+        interactor.getTracksFromApi(1)
     }
 
-    interface ApiCallback {
-        fun onSuccess(audio: List<Audio>)
-        fun onFailure()
+    fun getSearchResult(search: String) = interactor.getSearchResultFromApi(search)
 
-    }
 }
