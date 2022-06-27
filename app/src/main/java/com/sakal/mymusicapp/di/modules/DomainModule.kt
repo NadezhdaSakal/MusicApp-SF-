@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import android.content.Context
+import com.sakal.mymusicapp.data.preference.PreferenceProvider
 
 @Module
 class DomainModule(val context: Context) {
@@ -15,6 +16,9 @@ class DomainModule(val context: Context) {
 
     @Singleton
     @Provides
-    fun provideInteractor(repository: MainRepository, LastFMApi: LastFMApi) =
-        Interactor(repo = repository, retrofitService = LastFMApi)
+    fun provideInteractor(
+        repository: MainRepository,
+        LastFMApi: LastFMApi,
+        preferenceProvider: PreferenceProvider
+    ) = Interactor(repo = repository, api = LastFMApi, preferences = preferenceProvider)
 }

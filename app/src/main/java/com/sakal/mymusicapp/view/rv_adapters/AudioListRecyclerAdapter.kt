@@ -1,41 +1,72 @@
-package com.sakal.mymusicapp.view.rv_adapters;
+package com.sakal.mymusicapp.view.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sakal.mymusicapp.R
+import com.bumptech.glide.Glide
 import com.sakal.mymusicapp.data.entity.Audio
-import com.sakal.mymusicapp.view.rv_viewholders.AudioViewHolder
+import com.sakal.mymusicapp.data.entity.Track
+import com.sakal.mymusicapp.databinding.AudioItemBinding
 import kotlinx.android.synthetic.main.audio_item.view.*
+import javax.inject.Inject
 
+class AudioListRecyclerAdapter @Inject constructor(param: TrackClickListener) :
+    PagingDataAdapter<Audio, AudioListRecyclerAdapter.AudioViewHolder>(TrackComparator) {
+    var trackClickListener: TrackClickListener? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        AudioViewHolder(
+            AudioItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
 
-class AudioListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val items = mutableListOf<Audio>()
-
-    override fun getItemCount() = items.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return AudioViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.audio_item, parent, false))
+    override fun onBindViewHolder(holder: AudioViewHolder, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is AudioViewHolder -> {
-                holder.bind(items[position])
-                holder.itemView.item_container.setOnClickListener {
-                    clickListener.click(items[position])
-                }
+    fun addItems(field: List<Audio>) {
+
+    }
+
+    inner class AudioViewHolder(private val binding: AudioItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener {
+                trackClickListener?.onTrackClicked(
+                    binding,
+                    getItem(absoluteAdapterPosition) as Track
+                )
             }
+        }
+
+        private val track = itemView.track
+        private val ava = itemView.ava
+        private val artist = itemView.artist
+
+        fun bind(audio: Audio) {
+            track.text = audio.track
+            Glide.with(itemView)
+                .load(audio.image)
+                .centerCrop()
+                .into(ava)
+            artist.text = audio.artist
+
         }
     }
 
-    fun addItems(list: List<Audio>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
+
+    object TrackComparator : DiffUtil.ItemCallback<Audio>() {
+        override fun areItemsTheSame(oldItem: Audio, newItem: Audio): Boolean =
+            oldItem.image == newItem.image
+
+        override fun areContentsTheSame(oldItem: Audio, newItem: Audio): Boolean =
+            oldItem == newItem
     }
 
-    interface OnItemClickListener {
-        fun click(audio: Audio)
+    interface TrackClickListener {
+        fun onTrackClicked(binding: AudioItemBinding, track: Track)
     }
 }
