@@ -25,7 +25,7 @@ class App : Application() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "LatestChannel"
-            val descriptionText = "FilmsSearch notification Channel"
+            val descriptionText = "MyMusicApp notification Channel"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
             mChannel.description = descriptionText

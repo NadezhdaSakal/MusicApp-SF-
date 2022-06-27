@@ -1,7 +1,6 @@
 package com.sakal.mymusicapp.domain
 
 import android.database.Observable
-import com.sakal.mymusicapp.data.API
 import com.sakal.mymusicapp.data.LastFMApi
 import com.sakal.mymusicapp.data.MainRepository
 import com.sakal.mymusicapp.data.entity.Audio
@@ -11,6 +10,7 @@ import com.sakal.mymusicapp.utils.Converter
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import java.util.Collections.list
 
 class Interactor(private val repo: MainRepository, private val api: LastFMApi, private val preference: PreferenceProvider) {
 
@@ -18,13 +18,11 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi, p
     var progressBarState: BehaviorSubject<Boolean> = BehaviorSubject.create()
 
     fun getTracksFromApi(page: Int) {
-        //Показываем ProgressBar
         progressBarState.onNext(true)
-        //Метод getDefaultCategoryFromPreferences() будет нам получать при каждом запросе нужный нам список фильмов
         api.getTracks(getDefaultCategoryFromPreferences(), limit = 100, page)
             .subscribeOn(Schedulers.io())
             .map {
-                Converter.convertApitrackListToDTOList()
+                Converter.convertApiTrackListToDTOList(list<Track>)
             }
             .subscribeBy(
                 onError = {
@@ -39,7 +37,7 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi, p
 
 
     fun getSearchResultFromApi(search: String): Observable<List<Track>> =
-        api.getTracksFromSearch()
+        api.getTracksFromSearch(list<Track>)
             .map {
                 Converter.convertApiTrackListToDTOList(it.)
             }
@@ -50,5 +48,5 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi, p
 
     fun getDefaultCategoryFromPreferences() = preference.getDefaultCategory()
 
-    fun getTracksFromDB(): List<Audio> = repo.getAllFromDB()
+    fun getTracksFromDB(): io.reactivex.rxjava3.core.Observable<List<Audio>> = repo.getAllFromDB()
 }

@@ -11,6 +11,6 @@ class TracksViewModelFactory (
     ): ViewModelProvider.NewInstanceFactory(){
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeFragmentViewModel(api,repo) as T
+            return HomeFragmentViewModel() as T
         }
     }
