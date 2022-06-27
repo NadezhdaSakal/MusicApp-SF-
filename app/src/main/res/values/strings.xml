@@ -5,6 +5,11 @@
     <string name="menu_favorites_title_text">Избранное</string>
     <string name="menu_selections_title_text">Плейлисты</string>
     <string name="menu_home_title_text">Главная</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="radio_button_listeners">Слушатели</string>
+    <string name="radio_button_playcount">Прослушиваний</string>
+    <string name="radio_group_header">Подборка на главном экране:</string>
+    <string name="menu_settings_title_text">Настройки</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
