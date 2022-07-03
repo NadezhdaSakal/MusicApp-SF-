@@ -16,7 +16,7 @@ interface LastFMApi {
     ): Observable<TracksWrapper>
 
     @GET("?method=artist.gettoptracks&format=json")
-    fun getTracksFromSearch(
+    fun getTrackFromSearch(
         @Path("artist") artist: String,
         @Query("api_key") apiKey: String,
         @Query("query") query: String,
