@@ -19,7 +19,7 @@ interface LastFMApi {
     fun getTrackFromSearch(
         @Path("artist") artist: String,
         @Query("api_key") apiKey: String,
-        @Query("query") query: String,
+        @Query("query") query: Int,
         @Query("page") page: Int
     ): Observable<TracksWrapper>
 }

@@ -10,15 +10,15 @@ import android.content.Context
 import com.sakal.mymusicapp.data.preference.PreferenceProvider
 
 @Module
-class DomainModule(val context: Context) {
-    @Provides
-    fun provideContext() = context
+    class DomainModule(val context: Context) {
+        @Provides
+        fun provideContext() = context
 
-    @Singleton
-    @Provides
-    fun provideInteractor(
-        repository: MainRepository,
-        LastFMApi: LastFMApi,
-        preferenceProvider: PreferenceProvider
-    ) = Interactor(repo = repository, api = LastFMApi, preferences = preferenceProvider)
-}
+        @Singleton
+        @Provides
+        fun providePreferences(context: Context) = PreferenceProvider(context)
+
+        @Singleton
+        @Provides
+        fun provideInteractor(repository: MainRepository, lastFMApi: LastFMApi, preferenceProvider: PreferenceProvider) = Interactor(repo = repository, api = lastFMApi, preferences = preferenceProvider)
+    }

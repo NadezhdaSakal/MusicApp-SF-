@@ -18,7 +18,7 @@ class App : Application() {
         super.onCreate()
         instance = this
         dagger = DaggerAppComponent.builder()
-            .remoteProvider(RemoteModule())
+            .remoteModule(RemoteModule())
             .databaseModule(DatabaseModule())
             .domainModule(DomainModule(this))
             .build()
