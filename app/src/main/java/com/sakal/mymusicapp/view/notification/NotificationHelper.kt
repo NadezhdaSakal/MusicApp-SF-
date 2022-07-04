@@ -76,7 +76,7 @@ object NotificationHelper {
                             0
                         )
                         val dateTimeInMillis = pickedDateTime.timeInMillis
-                        createWatchLaterEvent(context, dateTimeInMillis, audio)
+                        createLatestEvent(context, dateTimeInMillis, audio)
                     }
 
                 TimePickerDialog(
@@ -94,7 +94,7 @@ object NotificationHelper {
         ).show()
     }
 
-    private fun createWatchLaterEvent(context: Context, dateTimeInMillis: Long, audio: Audio) {
+    private fun createLatestEvent(context: Context, dateTimeInMillis: Long, audio: Audio) {
         val alarmManager =
             context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(audio.track, null, context, ReminderBroadcast()::class.java)

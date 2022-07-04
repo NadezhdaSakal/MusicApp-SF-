@@ -18,7 +18,6 @@ import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
-import kotlinx.android.synthetic.main.fragment_toptracks.*
 import java.util.*
 import android.widget.Toast
 import androidx.core.view.isVisible
