@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sakal.mymusicapp.databinding.FragmentPlaylistBinding
-import kotlinx.android.synthetic.main.fragment_playlist.*
 import com.sakal.mymusicapp.utils.AnimationHelper
 
-
-class  PlaylistFragment : Fragment() {
+class PlaylistFragment : Fragment() {
     private lateinit var binding: FragmentPlaylistBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,11 +20,9 @@ class  PlaylistFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AnimationHelper.performFragmentCircularRevealAnimation(playlists, requireActivity(), 4)
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.playlists, requireActivity(), 4)
     }
-
 }
-
 
 
 

@@ -11,8 +11,10 @@ import com.sakal.mymusicapp.di.modules.DomainModule
 import com.sakal.mymusicapp.di.modules.DatabaseModule
 import com.sakal.mymusicapp.view.notification.NotificationConstants.CHANNEL_ID
 
+
 class App : Application() {
     lateinit var dagger: AppComponent
+    var isPromoShown = false
 
     override fun onCreate() {
         super.onCreate()
