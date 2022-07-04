@@ -9,12 +9,6 @@ import retrofit2.http.Query
 
 interface LastFMApi {
 
-    companion object {
-        const val LASTFM_API_ENDPOINT = "2.0?"
-        const val METHOD_TRACK_SEARCH = "track.search"
-        const val API_RESPONSE_FORMAT = "json"
-    }
-
     @GET("?method=chart.gettoptracks&format=json")
    // @GET("?method=chart.gettoptracks&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
 
