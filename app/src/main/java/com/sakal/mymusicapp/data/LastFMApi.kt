@@ -11,7 +11,6 @@ interface LastFMApi {
 
    @GET("?method=chart.gettoptracks&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
    fun getTracks(
-       limit1: String,
        @Query("limit") limit: Int,
        @Query("page") page: Int
    ): Observable<TracksWrapper>

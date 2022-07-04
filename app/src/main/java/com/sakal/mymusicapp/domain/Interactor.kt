@@ -15,7 +15,7 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi, p
 
     fun getTracksFromApi(page: Int) {
         progressBarState.onNext(true)
-        api.getTracks(getDefaultCategoryFromPreferences(),100, page)
+        api.getTracks(100, page)
             .subscribeOn(Schedulers.io())
             .map {
                 Converter.convertApiTrackListToDTOList(it.tracks.track)
