@@ -19,8 +19,7 @@ interface LastFMApi {
 
     @GET("?method=track.search&track=Believe&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
     fun getTrackFromSearch(
-        @Path("artist") artist: String,
-        search: String,
+        @Path("search")search: String,
         @Query("query") query: Int,
         @Query("page") page: Int
     ): Observable<TracksWrapper>
