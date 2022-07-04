@@ -18,7 +18,7 @@ interface LastFMApi {
     @GET("?method=chart.gettoptracks&format=json")
    // @GET("?method=chart.gettoptracks&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
 
-    suspend fun getTracks(
+     fun getTracks(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("limit") limit: Int,
         @Query("page") page: Int

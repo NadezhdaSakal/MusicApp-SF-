@@ -1,6 +1,5 @@
 package com.sakal.mymusicapp.domain
 
-import com.sakal.mymusicapp.BuildConfig.API_KEY
 import com.sakal.mymusicapp.data.LastFMApi
 import com.sakal.mymusicapp.data.MainRepository
 import com.sakal.mymusicapp.data.entity.Audio
@@ -16,8 +15,7 @@ class Interactor(private val repo: MainRepository, private val api: LastFMApi, p
 
     fun getTracksFromApi(page: Int) {
         progressBarState.onNext(true)
-        api.getTracks(getDefaultCategoryFromPreferences(), API_KEY,
-            100, page)
+        api.getTracks(getDefaultCategoryFromPreferences(),100, page )
             .subscribeOn(Schedulers.io())
             .map {
                 Converter.convertApiTrackListToDTOList(it.tracks.track)
