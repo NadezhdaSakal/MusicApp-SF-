@@ -12,7 +12,6 @@ class AutoDisposable : LifecycleObserver {
         lifecycle.addObserver(this)
         compositeDisposable = CompositeDisposable()
     }
-
     fun add(disposable: Disposable) {
         if (::compositeDisposable.isInitialized) {
             compositeDisposable.add(disposable)
@@ -20,13 +19,11 @@ class AutoDisposable : LifecycleObserver {
             throw NotImplementedError("must bind AutoDisposable to a Lifecycle first")
         }
     }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         compositeDisposable.dispose()
     }
 }
-
 fun Disposable.addTo(autoDisposable: AutoDisposable) {
     autoDisposable.add(this)
 }
