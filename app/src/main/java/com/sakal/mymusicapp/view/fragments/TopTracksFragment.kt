@@ -20,23 +20,31 @@ import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_toptracks.*
 import java.util.*
+import android.widget.Toast
+import androidx.core.view.isVisible
+import com.sakal.mymusicapp.utils.AutoDisposable
+import com.sakal.mymusicapp.utils.addTo
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
+
 
 
 class TopTracksFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
-    private lateinit var audioAdapter: AudioListRecyclerAdapter
+    private val autoDisposable = AutoDisposable()
+
+    private lateinit var tracksAdapter: AudioListRecyclerAdapter
     private lateinit var binding: FragmentToptracksBinding
-    private var audioDB = listOf<Audio>()
-        set(value) {
-            if (field == value) return
-            field = value
-            audioAdapter.addItems(field)
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        autoDisposable.bindTo(lifecycle)
         retainInstance = true
     }
 
@@ -51,64 +59,94 @@ class TopTracksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnimationHelper.performFragmentCircularRevealAnimation(toptracks, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.toptracks, requireActivity(), 1)
 
         initSearchView()
+        initPullToRefresh()
         initRecyckler()
 
-        viewModel.tracksListLiveData.observe(viewLifecycleOwner, Observer<List<Audio>> {
-            audioDB = it
-        })
+        viewModel.tracksListData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                tracksAdapter.addItems(list)
+            }
+            .addTo(autoDisposable)
+        viewModel.showProgressBar
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                binding.progressBar.isVisible = it
+            }
+            .addTo(autoDisposable)
+    }
 
+    private fun initPullToRefresh() {
+        binding.pullToRefresh.setOnRefreshListener {
+            tracksAdapter.items.clear()
+            viewModel.getTracks()
+            binding.pullToRefresh.isRefreshing = false
+        }
     }
 
     private fun initSearchView() {
-        search_view.setOnClickListener {
-            search_view.isIconified = false
+        binding.searchView.setOnClickListener {
+            binding.searchView.isIconified = false
         }
 
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isEmpty()) {
-                    audioAdapter.addItems(audioDB)
-                    return true
+        Observable.create(ObservableOnSubscribe<String> { subscriber ->
+            binding.searchView.setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    tracksAdapter.items.clear()
+                    subscriber.onNext(newText)
+                    return false
                 }
-                val result = audioDB.filter {
-                    it.track.lowercase(Locale.getDefault())
-                        .contains(newText.lowercase(Locale.getDefault()))
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    subscriber.onNext(query)
+                    return false
                 }
-                audioAdapter.addItems(result)
-                return true
-            }
+            })
         })
+            .subscribeOn(Schedulers.io())
+            .map {
+                it.toLowerCase(Locale.getDefault()).trim()
+            }
+            .debounce(800, TimeUnit.MILLISECONDS)
+            .filter {
+                viewModel.getTracks()
+                it.isNotBlank()
+            }
+            .flatMap {
+                viewModel.getSearchResult(it)
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onError = {
+                    Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+                },
+                onNext = {
+                    tracksAdapter.addItems(it)
+                }
+            )
+            .addTo(autoDisposable)
     }
 
     private fun initRecyckler() {
-        tracks_recycler.apply {
-            audioAdapter =
-                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.TrackClickListener {
-
-                    fun click(audio: Audio) {
+        binding.mainRecycler.apply {
+            tracksAdapter =
+                AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
+                    override fun click(audio: Audio) {
                         (requireActivity() as MainActivity).launchDetailsFragment(audio)
                     }
-
-                    override fun onTrackClicked(binding: AudioItemBinding, track: Track) {
-                        TODO("Not yet implemented")
-                    }
                 })
-            adapter = audioAdapter
+            adapter = tracksAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
     }
 
-
 }
-
-
 
