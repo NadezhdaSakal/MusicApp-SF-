@@ -6,18 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sakal.mymusicapp.data.entity.Audio
 import com.sakal.mymusicapp.view.rv_adapters.AudioListRecyclerAdapter
 import com.sakal.mymusicapp.view.rv_adapters.TopSpacingItemDecoration
 import com.sakal.mymusicapp.databinding.FragmentFavoritesBinding
-import com.sakal.mymusicapp.data.entity.Audio
-import com.sakal.mymusicapp.data.entity.Track
-import com.sakal.mymusicapp.databinding.AudioItemBinding
 import com.sakal.mymusicapp.utils.AnimationHelper
 import com.sakal.mymusicapp.view.MainActivity
-import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
-    private lateinit var audioAdapter: AudioListRecyclerAdapter
+    private lateinit var tracksAdapter: AudioListRecyclerAdapter
     private lateinit var binding: FragmentFavoritesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,24 +28,19 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val favoritesList: List<Audio> = emptyList()
 
-        AnimationHelper.performFragmentCircularRevealAnimation(favorites_fragment_root, requireActivity(),2)
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.favoritesFragmentRoot, requireActivity(),2)
 
         binding.favoritesRecycler.apply {
-            audioAdapter = AudioListRecyclerAdapter(object :
-                AudioListRecyclerAdapter.TrackClickListener {
-                fun click(audio: Audio) {
+            tracksAdapter = AudioListRecyclerAdapter(object : AudioListRecyclerAdapter.OnItemClickListener {
+                override fun click(audio: Audio) {
                     (requireActivity() as MainActivity).launchDetailsFragment(audio)
                 }
-
-                override fun onTrackClicked(binding: AudioItemBinding, track: Track) {
-                    TODO("Not yet implemented")
-                }
             })
-            adapter = audioAdapter
+            adapter = tracksAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
-        audioAdapter.addItems(favoritesList)
+        tracksAdapter.addItems(favoritesList)
     }
 }

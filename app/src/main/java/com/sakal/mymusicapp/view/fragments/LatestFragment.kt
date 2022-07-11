@@ -21,7 +21,7 @@ class LatestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AnimationHelper.performFragmentCircularRevealAnimation(binding.latestRoot, requireActivity(), 3)
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.latest, requireActivity(), 3)
     }
 }
 

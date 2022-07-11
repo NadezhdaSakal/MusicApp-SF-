@@ -6,12 +6,11 @@ import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.sakal.mymusicapp.*
-import com.sakal.mymusicapp.databinding.ActivityMainBinding
+import com.sakal.mymusicapp.R
 import com.sakal.mymusicapp.data.entity.Audio
-import com.sakal.mymusicapp.view.fragments.*
+import com.sakal.mymusicapp.databinding.ActivityMainBinding
 import com.sakal.mymusicapp.receivers.ConnectionChecker
-
+import com.sakal.mymusicapp.view.fragments.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,8 +61,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
-                    //элвиса мы вызываем создание нвого фрагмента
                     changeFragment( fragment?: TopTracksFragment(), tag)
                     true
                 }

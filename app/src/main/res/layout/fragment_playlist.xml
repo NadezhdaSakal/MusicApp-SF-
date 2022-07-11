@@ -6,6 +6,6 @@
     android:id="@+id/playlists"
     android:visibility="invisible"
     tools:visibility="visible"
-    tools:context=".view.fragments.TopTracksFragment">
+    tools:context=".view.fragments.PlaylistFragment">
 
 </FrameLayout>

@@ -1,13 +1,7 @@
 package com.sakal.mymusicapp.view.fragments
 
-import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

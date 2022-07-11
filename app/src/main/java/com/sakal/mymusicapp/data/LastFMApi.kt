@@ -8,17 +8,16 @@ import retrofit2.http.Query
 
 interface LastFMApi {
 
-    @GET("?method=chart.gettoptracks&format=json")
-    fun getTracks(
-        @Path("artist") artist: String,
-        @Query("limit") limit: Int,
-        @Query("page") page: Int
-    ): Observable<TracksWrapper>
+   @GET("?method=chart.gettoptracks&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
+   fun getTracks(
+       @Query("limit") limit: Int,
+       @Query("page") page: Int
+   ): Observable<TracksWrapper>
 
-    @GET("?method=artist.gettoptracks&format=json")
+
+    @GET("?method=track.search&track=Believe&api_key=fe914f2966ff09f742c0a56811dcabc8&format=json")
     fun getTrackFromSearch(
-        @Path("artist") artist: String,
-        @Query("api_key") apiKey: String,
+        @Path("search")search: String,
         @Query("query") query: Int,
         @Query("page") page: Int
     ): Observable<TracksWrapper>
